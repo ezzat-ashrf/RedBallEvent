@@ -33,19 +33,75 @@
     @media (orientation:portrait) and (min-width:700px){header{height:110px;padding:0 56px}.brand{font-size:1.3rem}.location{font-size:.95rem}main{padding:70px 56px 80px;max-width:1080px}.intro{align-items:flex-start;flex-direction:column;margin-bottom:56px}.intro h1{font-size:5rem}.intro p{font-size:1.35rem;max-width:720px}.stage-grid{grid-template-columns:repeat(2,1fr);gap:24px}.stage-card{min-height:360px;padding:34px;border-radius:28px}.stage-card h2{font-size:2.2rem}.stage-card p,.number{font-size:1.05rem}.open-label{font-size:1.1rem}.circle{width:56px;height:56px}.back{font-size:1.35rem;padding:22px 32px;min-height:76px}.stage-title h1{font-size:5rem}.stage-title p{font-size:1.2rem}.tabs-row{margin:38px 0 28px}.day-tab,.map-btn{font-size:1.2rem;padding:22px 30px;min-height:76px}.act{grid-template-columns:150px 1fr;min-height:92px;padding:14px 34px}.time{font-size:1.5rem}.artist{font-size:1.45rem}.map-view{padding:28px}.map-head{padding:8px 8px 24px}.map-head h2{font-size:2.3rem}.map-head p{font-size:1.1rem}.close-map{font-size:1.1rem;padding:18px 24px}.map-canvas{align-items:center}.map-inner{width:100%;height:auto;aspect-ratio:1664/960}}
     @media(max-width:620px){header{height:68px}.location{display:none}main{padding-top:30px}.stage-grid{grid-template-columns:1fr}.stage-card{min-height:155px}.schedule-top{align-items:start;flex-direction:column}.tabs-row{align-items:stretch;flex-direction:column}.tabs{display:grid;grid-template-columns:1fr 1fr}.day-tab{padding:13px 10px}.map-btn{justify-content:center}.act{grid-template-columns:82px 1fr;padding:10px 17px;min-height:68px}.time{font-size:1.05rem}.map-view{padding:10px}.map-head{padding:4px 4px 10px}.map-head p{display:none}.map-canvas{overflow:auto;display:block}.map-inner{width:980px;height:auto}.close-map{padding:12px 14px}}
     @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+
+    /* Full-page STARLIGHT sky */
+    body{background:#020507}
+    #starfield{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;background:radial-gradient(circle at 50% 18%,#101820 0,#05090d 32%,#010203 74%)}
+    .sky-glow{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+    .sky-glow:before,.sky-glow:after{content:"";position:absolute;border-radius:50%;filter:blur(90px);opacity:.16;animation:nebulaFloat 13s ease-in-out infinite alternate}
+    .sky-glow:before{width:52vw;height:52vw;left:-22vw;top:8vh;background:radial-gradient(circle,rgba(224,152,31,.72),transparent 68%)}
+    .sky-glow:after{width:48vw;height:48vw;right:-22vw;bottom:-10vh;background:radial-gradient(circle,rgba(255,255,255,.26),transparent 66%);animation-delay:-6s}
+    .shell{background:transparent;isolation:auto;position:relative;z-index:1}
+    .shell:before,.shell:after{display:none}
+    header{background:linear-gradient(180deg,rgba(1,3,5,.92),rgba(1,3,5,.68));box-shadow:0 12px 45px rgba(0,0,0,.22)}
+    main{padding-top:clamp(38px,7vh,88px)}
+    .brand-lockup{width:min(900px,88vw);margin:0 auto clamp(52px,8vh,90px);border:0;border-radius:0;background:transparent;box-shadow:none;position:relative;overflow:visible;filter:drop-shadow(0 22px 46px rgba(0,0,0,.7))}
+    .brand-lockup:after{content:"";position:absolute;inset:10% 8%;z-index:-1;background:radial-gradient(ellipse,rgba(224,152,31,.13),transparent 68%);filter:blur(25px);animation:logoAura 5s ease-in-out infinite}
+    .brand-lockup img{filter:drop-shadow(0 0 14px rgba(255,255,255,.06))}
+    .intro{padding:clamp(24px,4vw,42px);border-left:1px solid rgba(224,152,31,.48);background:linear-gradient(90deg,rgba(7,10,14,.82),rgba(7,10,14,.18),transparent);backdrop-filter:blur(4px)}
+    .stage-card{background:linear-gradient(150deg,rgba(16,20,26,.9),rgba(5,7,10,.72));backdrop-filter:blur(12px);border-color:rgba(255,255,255,.12)}
+    .stage-card:after{filter:blur(46px)}
+    .lineup{backdrop-filter:blur(16px)}
+    @keyframes nebulaFloat{to{transform:translate3d(5vw,-3vh,0) scale(1.08)}}
+    @keyframes logoAura{0%,100%{opacity:.45;transform:scale(.94)}50%{opacity:1;transform:scale(1.06)}}
+    @media(max-width:620px){.brand-lockup{width:108%;margin-left:-4%;margin-bottom:36px}.intro{padding:22px 18px}}
+
+    /* One-screen kiosk home */
+    body:has(#home:not([style*="display: none"])) {overflow:hidden}
+    #home{height:100%;display:grid;grid-template-rows:minmax(0,1.08fr) auto minmax(0,.92fr);gap:clamp(10px,1.5vh,22px);align-content:stretch}
+    main{height:100svh;max-width:1560px;padding:clamp(16px,2.3vh,30px) clamp(22px,4vw,64px)}
+    .brand-lockup{width:min(820px,74vw);height:100%;min-height:0;margin:0 auto;display:flex;align-items:center;justify-content:center;animation:logoFloat 7s ease-in-out infinite}
+    .brand-lockup img{width:100%;height:100%;object-fit:contain}
+    .intro{min-height:0;margin:0;padding:0;border:0;background:none;backdrop-filter:none;display:block;text-align:center}
+    .intro h1{font-size:clamp(1.45rem,2.8vw,2.6rem);line-height:1;letter-spacing:.2em;max-width:none;text-shadow:0 0 24px rgba(255,255,255,.18)}
+    .stage-grid{min-height:0;height:100%;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(10px,1.3vw,18px)}
+    .stage-card{min-height:0!important;height:100%;padding:clamp(16px,2vw,26px);border-radius:18px;animation:cardArrival .7s cubic-bezier(.2,.8,.2,1) both,cardGlow 5s ease-in-out infinite;box-shadow:0 16px 42px rgba(0,0,0,.38)}
+    .stage-card:nth-child(2){animation-delay:.12s,-1.3s}.stage-card:nth-child(3){animation-delay:.22s,-2.6s}.stage-card:nth-child(4){animation-delay:.32s,-3.9s}
+    .stage-card h2{font-size:clamp(1.05rem,1.75vw,1.7rem);margin-bottom:7px}.stage-card p{font-size:clamp(.72rem,1vw,.88rem)}
+    .circle{width:clamp(34px,3vw,44px);height:clamp(34px,3vw,44px)}
+    .open-label{font-size:clamp(.72rem,1vw,.92rem)}
+    .schedule-headbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;margin-bottom:clamp(14px,2vh,24px)}
+    .schedule-headbar .back{grid-column:1;grid-row:1;justify-self:start}.schedule-logo{grid-column:2;grid-row:1;width:min(620px,58vw);height:clamp(120px,18vh,210px);display:flex;align-items:center;justify-content:center}
+    .schedule-logo img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 14px 30px rgba(0,0,0,.6))}
+    .schedule-top{justify-content:center;text-align:center}.stage-title{width:100%;text-align:center}.stage-title h1{margin-left:auto;margin-right:auto}.stage-title p{margin-left:auto;margin-right:auto}
+    .sky-glow{animation:skyBreath 8s ease-in-out infinite}
+    .sky-glow span{position:absolute;width:4px;height:4px;border-radius:50%;background:#fff;box-shadow:0 0 16px 5px rgba(224,152,31,.45);animation:driftingSpark 9s ease-in-out infinite}
+    .sky-glow span:nth-child(1){left:12%;top:24%}.sky-glow span:nth-child(2){right:16%;top:34%;animation-delay:-3s}.sky-glow span:nth-child(3){left:48%;bottom:12%;animation-delay:-6s}
+    @keyframes logoFloat{0%,100%{transform:translateY(0) scale(.985)}50%{transform:translateY(-8px) scale(1)}}
+    @keyframes cardGlow{0%,100%{box-shadow:0 16px 42px rgba(0,0,0,.38),0 0 0 rgba(224,152,31,0)}50%{box-shadow:0 20px 54px rgba(0,0,0,.5),0 0 28px rgba(224,152,31,.08)}}
+    @keyframes skyBreath{50%{filter:brightness(1.18)}}
+    @keyframes driftingSpark{0%,100%{transform:translate3d(0,0,0) scale(.55);opacity:.2}50%{transform:translate3d(34px,-45px,0) scale(1.35);opacity:1}}
+    @media(max-width:950px){#home{grid-template-rows:minmax(0,.68fr) auto minmax(0,1.32fr)}.stage-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr))}.brand-lockup{width:min(760px,88vw)}.stage-card{padding:clamp(12px,1.8vw,20px)}}
+    @media(orientation:portrait) and (min-width:621px){#home{grid-template-rows:minmax(0,.68fr) auto minmax(0,1.32fr);padding-bottom:max(10px,env(safe-area-inset-bottom))}.stage-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:clamp(14px,1.7vh,24px)}.brand-lockup{width:min(720px,78vw)}.stage-card{padding:clamp(18px,2.2vw,28px)}.stage-card h2{font-size:clamp(1.35rem,3vw,2rem)}}
+    @media(max-width:620px){body:has(#home:not([style*="display: none"])) {overflow:auto}main{height:auto;min-height:100svh}#home{height:auto;min-height:100svh;display:block}.brand-lockup{width:108%;height:auto;aspect-ratio:1681/982;margin:0 0 8px -4%}.intro{margin:0 0 22px}.stage-grid{height:auto;grid-template-columns:1fr;grid-template-rows:none}.stage-card{min-height:150px!important}.schedule-headbar{grid-template-columns:auto 1fr}.schedule-logo{grid-column:2;width:min(300px,64vw);height:105px;justify-self:end}}
+    @media(max-height:760px) and (min-width:621px){main{padding-top:10px;padding-bottom:10px}#home{grid-template-rows:minmax(0,.52fr) auto minmax(0,1.48fr);gap:8px}.brand-lockup{width:min(590px,66vw)}.intro h1{font-size:clamp(1.15rem,2.2vw,1.8rem)}.stage-card{padding:11px 15px}.stage-card h2{font-size:clamp(.95rem,1.45vw,1.35rem);margin-bottom:3px}.stage-card p,.number,.open-label{font-size:.7rem}.circle{width:30px;height:30px;font-size:1rem}.schedule-logo{height:72px;margin-bottom:8px}.back{min-height:50px;padding:12px 20px}.schedule-top{margin-bottom:14px}.tabs-row{margin:14px 0 12px}.day-tab,.map-btn{padding:11px 18px}.act{min-height:58px;padding:7px 24px}}
   </style>
 </head>
 <body>
+<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="sky-glow" aria-hidden="true"><span></span><span></span><span></span></div>
 <div class="shell">
-  <header><div class="brand"><span class="star"></span><span>Festival Guide</span></div><div class="location">Great Pyramids of Giza · October 9–10</div></header>
   <main>
     <section id="home">
-      <div class="brand-lockup"><img src="assets/starlight-logo.png" alt="EXIT and P+US present Starlight Festival in partnership with Visa"></div>
-      <div class="intro"><div><p class="eyebrow">Festival Kiosk · Two nights · Four stages</p><h1>Choose your stage</h1></div><p>Explore both nights, check every set time, then use the venue map to find your way.</p></div>
+      <div class="brand-lockup"><img src="assets/starlight-logo-transparent.png" alt="EXIT and P+US present Starlight Festival in partnership with Visa"></div>
+      <div class="intro"><h1>Choose your stage</h1></div>
       <div class="stage-grid" id="stageGrid"></div>
     </section>
     <section class="schedule" id="schedule" aria-live="polite">
-      <button class="back" id="backBtn">← All stages</button>
+      <div class="schedule-headbar">
+        <button class="back" id="backBtn">← All stages</button>
+        <div class="schedule-logo"><img src="assets/starlight-logo-transparent.png" alt="Starlight Festival"></div>
+      </div>
       <div class="schedule-top"><div class="stage-title"><p class="eyebrow" id="stageNumber"></p><h1 id="stageName"></h1><p id="stageNote"></p></div></div>
       <div class="tabs-row"><div class="tabs" role="tablist" aria-label="Festival day"><button class="day-tab active" data-day="9" role="tab">Friday · Oct 9</button><button class="day-tab" data-day="10" role="tab">Saturday · Oct 10</button></div><button class="map-btn" id="mapBtn">⌖ Find this stage</button></div>
       <div class="lineup" id="lineup"></div>
@@ -78,10 +134,44 @@ Object.entries(stages).forEach(([id,s])=>{const b=document.createElement('button
 function openStage(id){current=id;day='9';home.style.display='none';schedule.classList.add('active');document.querySelector('#stageName').textContent=stages[id].name;document.querySelector('#stageNumber').textContent=stages[id].number;document.querySelector('#stageNote').textContent=stages[id].note;schedule.style.setProperty('--stage',stages[id].color);setDay('9');window.scrollTo({top:0,behavior:'smooth'})}
 function setDay(d){day=d;document.querySelectorAll('.day-tab').forEach(x=>{const on=x.dataset.day===d;x.classList.toggle('active',on);x.setAttribute('aria-selected',on)});lineup.innerHTML=stages[current].days[d].map(a=>`<div class="act"><div class="time">${a[0]}</div><div class="artist">${a[1]}</div></div>`).join('')}
 document.querySelectorAll('.day-tab').forEach(b=>b.onclick=()=>setDay(b.dataset.day));
-document.querySelector('#backBtn').onclick=()=>{schedule.classList.remove('active');home.style.display='block';window.scrollTo({top:0,behavior:'smooth'})};
+document.querySelector('#backBtn').onclick=()=>{schedule.classList.remove('active');home.style.display='';window.scrollTo({top:0,behavior:'smooth'})};
 function renderFootsteps(path){const ns='http://www.w3.org/2000/svg',layer=document.querySelector('#footsteps');layer.replaceChildren();const length=path.getTotalLength();let index=0;for(let distance=12;distance<length-5;distance+=25){const point=path.getPointAtLength(distance),ahead=path.getPointAtLength(Math.min(distance+2,length)),angle=Math.atan2(ahead.y-point.y,ahead.x-point.x)*180/Math.PI,side=index%2===0?-4:4;const step=document.createElementNS(ns,'g');step.setAttribute('class','footstep');step.setAttribute('transform',`translate(${point.x} ${point.y}) rotate(${angle}) translate(0 ${side})`);step.style.setProperty('--delay',`${index*.07}s`);const sole=document.createElementNS(ns,'ellipse');sole.setAttribute('cx','-1');sole.setAttribute('cy','0');sole.setAttribute('rx','4.5');sole.setAttribute('ry','2.6');step.append(sole);[[4.8,-2,1.4],[5.6,0,1.55],[4.8,2,1.25]].forEach(([x,y,r])=>{const toe=document.createElementNS(ns,'circle');toe.setAttribute('cx',x);toe.setAttribute('cy',y);toe.setAttribute('r',r);step.append(toe)});layer.append(step);index++}}
 const mapView=document.querySelector('#mapView');document.querySelector('#mapBtn').onclick=()=>{const s=stages[current],m=s.map;document.querySelector('#mapTitle').textContent=`Find ${s.short}`;document.querySelector('#destPin').style.cssText=`--x:${m.x};--y:${m.y}`;document.querySelector('#destLabel').style.cssText=`--lx:${m.lx};--ly:${m.ly}`;document.querySelector('#destLabel').textContent=s.short;const route=document.querySelector('#routePath');route.setAttribute('d',m.path);mapView.classList.add('active');renderFootsteps(route);document.body.style.overflow='hidden';document.querySelector('#closeMap').focus()};
 function closeMap(){mapView.classList.remove('active');document.body.style.overflow='';document.querySelector('#mapBtn').focus()}document.querySelector('#closeMap').onclick=closeMap;document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mapView.classList.contains('active'))closeMap()});
+
+const sky=document.querySelector('#starfield'),ctx=sky.getContext('2d');
+const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let stars=[],shooters=[],skyWidth=0,skyHeight=0,dpr=1,lastShot=0;
+function seedStars(){
+  const count=Math.min(420,Math.floor((skyWidth*skyHeight)/4200));
+  stars=Array.from({length:count},(_,i)=>({
+    x:Math.random()*skyWidth,y:Math.random()*skyHeight,
+    r:Math.random()<.08?Math.random()*1.8+1.1:Math.random()*.95+.25,
+    a:Math.random()*.65+.2,p:Math.random()*Math.PI*2,
+    s:Math.random()*.0018+.00045,g:i%19===0
+  }));
+}
+function sizeSky(){
+  dpr=Math.min(devicePixelRatio||1,2);skyWidth=innerWidth;skyHeight=innerHeight;
+  sky.width=Math.floor(skyWidth*dpr);sky.height=Math.floor(skyHeight*dpr);
+  sky.style.width=skyWidth+'px';sky.style.height=skyHeight+'px';ctx.setTransform(dpr,0,0,dpr,0,0);seedStars();
+}
+function drawStar(star,time){
+  const pulse=reduceMotion?star.a:star.a*(.68+.32*Math.sin(time*star.s+star.p));
+  ctx.beginPath();ctx.fillStyle=`rgba(255,255,255,${Math.max(.08,pulse)})`;ctx.arc(star.x,star.y,star.r,0,Math.PI*2);ctx.fill();
+  if(star.g&&pulse>.45){
+    const arm=star.r*5;ctx.strokeStyle=`rgba(255,244,214,${pulse*.42})`;ctx.lineWidth=.65;
+    ctx.beginPath();ctx.moveTo(star.x-arm,star.y);ctx.lineTo(star.x+arm,star.y);ctx.moveTo(star.x,star.y-arm);ctx.lineTo(star.x,star.y+arm);ctx.stroke();
+  }
+}
+function animateSky(time=0){
+  ctx.clearRect(0,0,skyWidth,skyHeight);stars.forEach(star=>drawStar(star,time));
+  if(!reduceMotion&&time-lastShot>6500+Math.random()*4500){shooters.push({x:-120,y:Math.random()*skyHeight*.4,v:11+Math.random()*5,life:0});lastShot=time}
+  shooters.forEach(s=>{s.x+=s.v;s.y+=s.v*.34;s.life++;const grad=ctx.createLinearGradient(s.x-105,s.y-36,s.x,s.y);grad.addColorStop(0,'rgba(224,152,31,0)');grad.addColorStop(1,'rgba(255,255,255,.85)');ctx.strokeStyle=grad;ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(s.x-105,s.y-36);ctx.lineTo(s.x,s.y);ctx.stroke()});
+  shooters=shooters.filter(s=>s.x<skyWidth+140&&s.life<150);
+  if(!reduceMotion)requestAnimationFrame(animateSky)
+}
+addEventListener('resize',sizeSky,{passive:true});sizeSky();animateSky();
 </script>
 </body>
 </html>
