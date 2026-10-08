@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#050608">
+  <meta name="description" content="Starlight Festival kiosk guide — lineups for four stages and an interactive venue map.">
+  <title>Starlight Festival Guide</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050608'/%3E%3Cpath d='M32 7l5.4 18.2L56 32l-18.6 6.8L32 57l-5.4-18.2L8 32l18.6-6.8z' fill='%23ffb800'/%3E%3C/svg%3E">
+  <style>
+    :root{--bg:#050608;--panel:#101217;--text:#f6f4ee;--muted:#a5a7ad;--gold:#ffb800;--gold2:#ffd76a;--line:#292c33;--shadow:0 24px 80px rgba(0,0,0,.45)}
+    *{box-sizing:border-box} html{font-size:16px} body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh;overflow-x:hidden}
+    button{font:inherit;color:inherit} button:focus-visible{outline:3px solid #fff;outline-offset:3px}
+    .shell{min-height:100vh;background:radial-gradient(circle at 18% 10%,rgba(255,184,0,.13),transparent 28%),radial-gradient(circle at 82% 80%,rgba(98,67,255,.1),transparent 30%),var(--bg);position:relative}
+    .shell:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.35;background-image:radial-gradient(#fff 0.65px,transparent .8px);background-size:18px 18px;mask-image:linear-gradient(to bottom,#000,transparent 65%)}
+    header{height:82px;padding:0 clamp(20px,4vw,64px);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.09);position:relative;z-index:2}
+    .brand{display:flex;align-items:center;gap:13px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.star{width:26px;height:26px;background:var(--gold);clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%)}
+    .location{font-size:.82rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+    main{position:relative;z-index:1;max-width:1500px;margin:0 auto;padding:clamp(28px,5vh,64px) clamp(20px,4vw,64px) 48px}
+    .eyebrow{color:var(--gold);font-size:.8rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;margin:0 0 13px}.intro{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:clamp(26px,4vh,44px)}
+    h1{font-size:clamp(2.4rem,6vw,5.8rem);line-height:.9;letter-spacing:-.055em;text-transform:uppercase;margin:0;max-width:900px}.intro p{color:var(--muted);font-size:1rem;max-width:360px;line-height:1.55;margin:0 0 4px}
+    .stage-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.stage-card{min-height:270px;padding:24px;border:1px solid var(--line);background:linear-gradient(150deg,rgba(255,255,255,.065),rgba(255,255,255,.015));border-radius:20px;text-align:left;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;position:relative;overflow:hidden;transition:transform .25s,border-color .25s,background .25s}
+    .stage-card:after{content:"";position:absolute;width:190px;height:190px;border-radius:50%;right:-85px;bottom:-95px;background:var(--accent);filter:blur(30px);opacity:.12;transition:opacity .25s}.stage-card:hover,.stage-card:focus-visible{transform:translateY(-6px);border-color:var(--accent);background:linear-gradient(150deg,rgba(255,255,255,.1),rgba(255,255,255,.02))}.stage-card:hover:after{opacity:.28}
+    .number{font-size:.74rem;font-weight:800;letter-spacing:.14em;color:var(--accent);text-transform:uppercase}.stage-card h2{font-size:clamp(1.35rem,2vw,2rem);line-height:1.05;text-transform:uppercase;letter-spacing:-.03em;margin:0 0 12px}.stage-card p{margin:0;color:var(--muted);font-size:.9rem}.open-label{display:flex;align-items:center;justify-content:space-between;font-weight:800}.circle{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:#050608;font-size:1.3rem}
+    .schedule{display:none}.schedule.active{display:block}.schedule-top{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:28px}.back,.map-btn,.day-tab,.close-map{border:0;cursor:pointer}.back{background:transparent;color:var(--muted);padding:12px 0;font-weight:700}.back:hover{color:#fff}.stage-title h1{font-size:clamp(2.2rem,5vw,4.8rem);color:var(--stage)}.stage-title p{margin:10px 0 0;color:var(--muted)}
+    .tabs-row{display:flex;justify-content:space-between;gap:18px;align-items:center;margin:26px 0 20px}.tabs{display:flex;background:#111319;border:1px solid var(--line);padding:5px;border-radius:14px}.day-tab{padding:14px 24px;border-radius:10px;background:transparent;color:var(--muted);font-weight:800}.day-tab.active{background:#f5f3ed;color:#090a0d}.map-btn{padding:16px 24px;border-radius:14px;background:var(--gold);color:#080808;font-weight:900;display:flex;align-items:center;gap:9px;box-shadow:0 10px 30px rgba(255,184,0,.18)}
+    .lineup{border:1px solid var(--line);border-radius:22px;overflow:hidden;background:rgba(10,11,14,.76);box-shadow:var(--shadow)}.act{display:grid;grid-template-columns:130px 1fr;align-items:center;min-height:74px;padding:10px 28px;border-bottom:1px solid var(--line)}.act:last-child{border-bottom:0}.time{color:var(--stage);font-weight:900;font-size:1.25rem;font-variant-numeric:tabular-nums}.artist{font-size:clamp(1rem,2vw,1.35rem);font-weight:750;letter-spacing:.01em}
+    .map-view{display:none;position:fixed;inset:0;background:#06070a;z-index:20;padding:20px}.map-view.active{display:flex;flex-direction:column}.map-head{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:4px 6px 16px}.map-head h2{margin:0;font-size:clamp(1.35rem,3vw,2.2rem);text-transform:uppercase}.map-head p{margin:5px 0 0;color:var(--muted)}.close-map{padding:14px 20px;border-radius:12px;background:#fff;color:#080808;font-weight:900}.map-canvas{position:relative;flex:1;min-height:0;border-radius:20px;overflow:hidden;background:#b29d7e;display:grid;place-items:center}.map-inner{position:relative;width:min(100%,calc((100vh - 130px)*1.74));aspect-ratio:3125/1796}.map-inner img{display:block;width:100%;height:100%;object-fit:contain}.pin{position:absolute;width:25px;height:25px;border-radius:50%;background:#ff302d;border:5px solid #fff;box-shadow:0 0 0 10px rgba(255,48,45,.28);transform:translate(-50%,-50%);animation:pulse 1.6s infinite;left:var(--x);top:var(--y)}.route{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.route path{stroke:#ff302d;stroke-width:9;stroke-linecap:round;stroke-linejoin:round;fill:none;stroke-dasharray:20 18;filter:drop-shadow(0 3px 3px rgba(0,0,0,.25))}.dest-label{position:absolute;left:var(--lx);top:var(--ly);transform:translate(-50%,-100%);background:#08090c;color:#fff;padding:9px 13px;border-radius:9px;font-size:.76rem;font-weight:900;text-transform:uppercase;white-space:nowrap;box-shadow:0 8px 25px rgba(0,0,0,.35)}
+    @keyframes pulse{0%,100%{box-shadow:0 0 0 7px rgba(255,48,45,.3)}50%{box-shadow:0 0 0 16px rgba(255,48,45,0)}}
+    @media(max-width:950px){.stage-grid{grid-template-columns:repeat(2,1fr)}.intro{align-items:start;flex-direction:column}.stage-card{min-height:220px}}
+    @media(max-width:620px){header{height:68px}.location{display:none}main{padding-top:30px}.stage-grid{grid-template-columns:1fr}.stage-card{min-height:155px}.schedule-top{align-items:start;flex-direction:column}.tabs-row{align-items:stretch;flex-direction:column}.tabs{display:grid;grid-template-columns:1fr 1fr}.day-tab{padding:13px 10px}.map-btn{justify-content:center}.act{grid-template-columns:82px 1fr;padding:10px 17px;min-height:68px}.time{font-size:1.05rem}.map-view{padding:10px}.map-head{padding:4px 4px 10px}.map-head p{display:none}.map-canvas{overflow:auto;display:block}.map-inner{width:980px;height:auto}.close-map{padding:12px 14px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+<div class="shell">
+  <header><div class="brand"><span class="star"></span><span>Starlight Guide</span></div><div class="location">Great Pyramids of Giza · October 9–10</div></header>
+  <main>
+    <section id="home">
+      <div class="intro"><div><p class="eyebrow">Festival Kiosk</p><h1>Choose your stage</h1></div><p>Explore both nights, check every set time, then use the venue map to find your way.</p></div>
+      <div class="stage-grid" id="stageGrid"></div>
+    </section>
+    <section class="schedule" id="schedule" aria-live="polite">
+      <button class="back" id="backBtn">← All stages</button>
+      <div class="schedule-top"><div class="stage-title"><p class="eyebrow" id="stageNumber"></p><h1 id="stageName"></h1><p id="stageNote"></p></div></div>
+      <div class="tabs-row"><div class="tabs" role="tablist" aria-label="Festival day"><button class="day-tab active" data-day="9" role="tab">Friday · Oct 9</button><button class="day-tab" data-day="10" role="tab">Saturday · Oct 10</button></div><button class="map-btn" id="mapBtn">⌖ Find this stage</button></div>
+      <div class="lineup" id="lineup"></div>
+    </section>
+  </main>
+</div>
+<section class="map-view" id="mapView" aria-modal="true" role="dialog" aria-labelledby="mapTitle">
+  <div class="map-head"><div><h2 id="mapTitle">Route to stage</h2><p>Start at the red “You are here” marker and follow the highlighted path.</p></div><button class="close-map" id="closeMap">Back to lineup</button></div>
+  <div class="map-canvas"><div class="map-inner"><img src="assets/festival-map.png" alt="Starlight Festival venue map"><svg class="route" viewBox="0 0 1000 575" preserveAspectRatio="none"><path id="routePath" d=""></path></svg><div class="pin" id="destPin"></div><div class="dest-label" id="destLabel"></div></div></div>
+</section>
+<script>
+const stages={
+  main:{name:'The Rise to Starlight',short:'Main Stage',number:'Stage 01',note:'Main Stage · In partnership with Visa',color:'#ff9f1a',map:{x:'58%',y:'46%',lx:'58%',ly:'43%',path:'M 887 448 L 748 399 L 659 394 L 596 315 L 579 276'},days:{
+    9:[['17:30','Coco & Breezy'],['19:00','Awen B2B Divolly & Markward'],['20:30','Satori'],['21:55','WhoMadeWho · Hybrid DJ Set'],['23:25','Pete Tong B2B Vintage Culture'],['00:55','The Rise to Starlight'],['01:00','Adriatique']],
+    10:[['17:30','Avantika'],['18:45','Deer Jade · 10/10 New Moon Set'],['20:15','Cloonee'],['21:45','Michael Bibi'],['23:45','Enrico Sangiuliano'],['01:00','Charlotte de Witte']] }},
+  orion:{name:'Orion',short:'Orion Stage',number:'Stage 02',note:'Powered by Coca-Cola',color:'#a879ff',map:{x:'29%',y:'44%',lx:'29%',ly:'40%',path:'M 887 448 L 748 399 L 574 402 L 469 340 L 294 253'},days:{
+    9:[['17:30','Akasyon B2B Neo'],['19:00','Tebra'],['20:15','Ziad Mousa B2B Dodge_Ramzz'],['21:30','Nic Mehreeb B2B Moti'],['22:45','Thatgirl Sherryk B2B Mizo Sultan & Riad'],['00:45','Awadly B3B Rolbac B3B Stasi Sanlin']],
+    10:[['17:30','F Spins B2B Del Rady'],['18:45','Adham Dou B2B Ahmed Salah'],['19:45','Abou Samra'],['20:45','La Familia'],['22:00','KZ & Cake'],['23:30','Alyssa & Gia'],['01:00','Fiona Kraft B2B Floyd Lavine'],['03:00','Gioli & Assia Live · Starlight Closing']] }},
+  nosleep:{name:'No Sleep Giza',short:'No Sleep Giza',number:'Stage 03',note:'Electronic music all night',color:'#ff36d5',map:{x:'88%',y:'35%',lx:'88%',ly:'31%',path:'M 887 448 L 818 390 L 814 294 L 878 206'},days:{
+    9:[['17:30','Human Rias B2B Reblok'],['19:00','Valentino'],['20:15','BIIA'],['21:30','Charlie Sparks'],['22:40','Indira Paganotto'],['00:40','Paolo Ferrara B2B Juno'],['02:00','Special B2B']],
+    10:[['17:30','Taef B2B Sokkary'],['19:00','Jade B2B Tala'],['20:30','Dish Dash'],['22:00','Ashmawy B2B Coeus'],['23:30','Layla Benitez B2B Lanna'],['01:30','Baset B2B Olympe']] }},
+  homeground:{name:'Homeground',short:'Homeground Stage',number:'Stage 04',note:'In partnership with Visa',color:'#c7a4dd',map:{x:'73%',y:'67%',lx:'73%',ly:'63%',path:'M 887 448 L 824 407 L 753 389'},days:{
+    9:[['18:00','Mash'],['19:00','Yo-Lan-Da'],['20:00','DJ Amira'],['21:00','Dozee'],['22:00','Aren B2B Haytt'],['23:00','Toola'],['00:00','Pikay']],
+    10:[['18:00','Mary Khalil'],['19:00','Fouda'],['20:00','Zio'],['21:00','Bou-D B2B Y. Gohar'],['22:00','Hendawy'],['23:00','Kristina Ladyko B2B Lydie The DJette'],['00:00','Fady Mirshak']] }}
+};
+let current='main',day='9';
+const home=document.querySelector('#home'),schedule=document.querySelector('#schedule'),lineup=document.querySelector('#lineup');
+const grid=document.querySelector('#stageGrid');
+Object.entries(stages).forEach(([id,s])=>{const b=document.createElement('button');b.className='stage-card';b.style.setProperty('--accent',s.color);b.innerHTML=`<span class="number">${s.number}</span><div><h2>${s.short}</h2><p>October 9 & 10</p></div><span class="open-label">View full lineup <span class="circle">+</span></span>`;b.onclick=()=>openStage(id);grid.appendChild(b)});
+function openStage(id){current=id;day='9';home.style.display='none';schedule.classList.add('active');document.querySelector('#stageName').textContent=stages[id].name;document.querySelector('#stageNumber').textContent=stages[id].number;document.querySelector('#stageNote').textContent=stages[id].note;schedule.style.setProperty('--stage',stages[id].color);setDay('9');window.scrollTo({top:0,behavior:'smooth'})}
+function setDay(d){day=d;document.querySelectorAll('.day-tab').forEach(x=>{const on=x.dataset.day===d;x.classList.toggle('active',on);x.setAttribute('aria-selected',on)});lineup.innerHTML=stages[current].days[d].map(a=>`<div class="act"><div class="time">${a[0]}</div><div class="artist">${a[1]}</div></div>`).join('')}
+document.querySelectorAll('.day-tab').forEach(b=>b.onclick=()=>setDay(b.dataset.day));
+document.querySelector('#backBtn').onclick=()=>{schedule.classList.remove('active');home.style.display='block';window.scrollTo({top:0,behavior:'smooth'})};
+const mapView=document.querySelector('#mapView');document.querySelector('#mapBtn').onclick=()=>{const s=stages[current],m=s.map;document.querySelector('#mapTitle').textContent=`Route to ${s.short}`;document.querySelector('#destPin').style.cssText=`--x:${m.x};--y:${m.y}`;document.querySelector('#destLabel').style.cssText=`--lx:${m.lx};--ly:${m.ly}`;document.querySelector('#destLabel').textContent=s.short;document.querySelector('#routePath').setAttribute('d',m.path);mapView.classList.add('active');document.body.style.overflow='hidden';document.querySelector('#closeMap').focus()};
+function closeMap(){mapView.classList.remove('active');document.body.style.overflow='';document.querySelector('#mapBtn').focus()}document.querySelector('#closeMap').onclick=closeMap;document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mapView.classList.contains('active'))closeMap()});
+</script>
+</body>
+</html>
